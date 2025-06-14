@@ -1,6 +1,4 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import tensorflow as tf
 from keras import optimizers
 from keras.callbacks import ReduceLROnPlateau
@@ -41,6 +39,6 @@ def train_model(train_low_light_images, train_enhanced_images, val_low_light_ima
         ],
     )
 
-    model.save(model_save_path)   # <-- added saving line here
+   
 
     return history, model
