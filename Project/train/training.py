@@ -39,7 +39,6 @@ def train_model(train_low_light_images, train_enhanced_images, val_low_light_ima
             )
         ],
     )
-    model.save("mirnet_model.h5")
 
     
 
