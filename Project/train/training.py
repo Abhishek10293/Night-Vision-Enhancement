@@ -1,16 +1,17 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import tensorflow as tf
 from keras import optimizers
 from keras.callbacks import ReduceLROnPlateau
 from model.mirnet import mirnet_model
 from data.dataset import get_dataset
 
-
 def charbonnier_loss(y_true, y_pred):
     return tf.reduce_mean(tf.sqrt(tf.square(y_true - y_pred) + tf.square(1e-3)))
 
 def peak_signal_noise_ratio(y_true, y_pred):
     return tf.image.psnr(y_pred, y_true, max_val=255.0)
-
 
 def train_model(train_low_light_images, train_enhanced_images, val_low_light_images, val_enhanced_images, image_size, batch_size, epochs, model_save_path):
     train_dataset = get_dataset(train_low_light_images, train_enhanced_images)
@@ -40,7 +41,6 @@ def train_model(train_low_light_images, train_enhanced_images, val_low_light_ima
         ],
     )
 
-    
+    model.save(model_save_path)   # <-- added saving line here
 
-    
     return history, model
