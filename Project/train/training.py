@@ -42,3 +42,13 @@ def train_model(train_low_light_images, train_enhanced_images, val_low_light_ima
    
 
     return history, model
+def build_mirnet_model(image_size):
+    from model.mirnet import mirnet_model
+    import tensorflow as tf
+
+    model = mirnet_model(num_rrg=2, num_mrb=1, channels=32)
+    input_img = tf.keras.Input(shape=(image_size, image_size, 3))
+    output_img = model(input_img)
+    model = tf.keras.Model(inputs=input_img, outputs=output_img)
+    return model
+
