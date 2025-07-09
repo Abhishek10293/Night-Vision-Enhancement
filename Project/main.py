@@ -55,3 +55,5 @@ plot_history(history, "peak_signal_noise_ratio", "PSNR")
 
 # Infer and save results
 infer_and_save(model, test_low_light_images, "./test/predicted")
+model.save("mirnet_model.h5")
+
